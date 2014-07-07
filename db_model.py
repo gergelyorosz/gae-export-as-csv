@@ -1,7 +1,6 @@
 from google.appengine.ext import db
 
-class MySong(db.Model):
-	name = db.StringProperty()
-	artist = db.StringProperty()
-	releaseDate = db.DateTimeProperty()
-	numAwards = db.IntegerProperty() 
+class MyModel(db.Model):
+	property1 = db.StringProperty()
+	property2 = db.DateTimeProperty()
+	property3 = db.IntegerProperty() 

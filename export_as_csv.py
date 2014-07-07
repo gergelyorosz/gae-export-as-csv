@@ -6,7 +6,7 @@ def exportToCsv(query, csvFileName, delimiter):
 		csvWriter = csv.writer(csvFile, delimiter=delimiter, quotechar='|', quoting=csv.QUOTE_MINIMAL)
 		writeHeader(csvWriter)
 
-		rowsPerQuery = 100
+		rowsPerQuery = 1
 		totalRowsSaved = 0
 		cursor = None
 		areMoreRows = True
