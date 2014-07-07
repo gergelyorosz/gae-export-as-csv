@@ -1,12 +1,16 @@
+# Run from GAE remote API:
+# 	{GAE Path}\remote_api_shell.py -s {YourAPPName}.appspot.com
+# 	import export_as_csv
+
 import csv
-from db_model import User, Song, UserSong, UserSongRecommendation, UserSavedList
+from db_model import MyModel
 
 def exportToCsv(query, csvFileName, delimiter):
 	with open(csvFileName, 'wb') as csvFile:
 		csvWriter = csv.writer(csvFile, delimiter=delimiter, quotechar='|', quoting=csv.QUOTE_MINIMAL)
 		writeHeader(csvWriter)
 
-		rowsPerQuery = 1
+		rowsPerQuery = 1000
 		totalRowsSaved = 0
 		cursor = None
 		areMoreRows = True
@@ -28,12 +32,12 @@ def exportToCsv(query, csvFileName, delimiter):
 
 		print 'Finished saving all rows.'
 
-def writeHeader(csvWriter)
-	csvWriter.writerow(['Email', 'User ID', 'Date Saved']) #Output csv header
+def writeHeader(csvWriter):
+	csvWriter.writerow(['Property1', 'Property2', 'Property3']) #Output csv header
 
 def saveItem(csvWriter, item):
-	csvWriter.writerow([item.email, item.userId, item.dateSaved]) # Save items in preferred format
+	csvWriter.writerow([item.property1, item.property2, item.property3]) # Save items in preferred format
 
 
-query = UserSavedList.gql("ORDER BY email") #Query for items
-exportToCsv(query, 'testCsv.csv', ',')
+query = MyModel.gql("ORDER BY property1") #Query for items
+exportToCsv(query, 'myExport.csv', ',')
